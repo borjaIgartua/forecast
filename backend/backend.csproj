@@ -17,6 +17,9 @@
     <Folder Include="Code\Controllers\" />
     <Folder Include="Configuration\" />
     <Folder Include="Code\Utils\" />
+    <Folder Include="Code\Repo\" />
+    <Folder Include="Code\Model\" />
+    <Folder Include="Code\Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Properties\global.json" />
