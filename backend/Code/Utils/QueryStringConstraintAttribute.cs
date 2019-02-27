@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace backend.Code.Utils {
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple =true)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class QueryStringConstraintAttribute: ActionMethodSelectorAttribute {
 
         private string Name { get; set; }
