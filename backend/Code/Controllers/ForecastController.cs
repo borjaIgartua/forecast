@@ -2,21 +2,19 @@
 using System.Threading.Tasks;
 using backend.Code.Model;
 using backend.Code.Repo;
+using backend.Code.Services;
 using backend.Code.Utils;
 using backend.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-
 namespace backend.Code.Controllers {
     [Route("api/weather/[controller]")]
     public class ForecastController : Controller {    
-        private readonly OpenWeatherSecrets _openWeatherSecrets;
         private IRepository<WeatherDay> WeatherRepository { get; }
 
-        public ForecastController(IOptions<OpenWeatherSecrets> openWeatherSecrets) {
-            _openWeatherSecrets = openWeatherSecrets.Value ?? throw new ArgumentException(nameof(openWeatherSecrets));
-            WeatherRepository = new OpenWeatherRepository(_openWeatherSecrets);
+        public ForecastController(IOptions<OpenWeatherSecrets> openWeatherSecrets, OpenWeatherService service) {
+            WeatherRepository = new OpenWeatherRepository(openWeatherSecrets.Value, service);
         }
 
         [HttpGet()]

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using backend.Code.Services;
 
 namespace backend
 {
@@ -29,7 +30,9 @@ namespace backend
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // -------------- Configuration ---------------
+
             services.Configure<OpenWeatherSecrets>(Configuration.GetSection("OpenWeatherAPI"));
+            services.AddHttpClient<OpenWeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

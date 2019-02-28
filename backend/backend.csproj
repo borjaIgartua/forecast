@@ -20,6 +20,7 @@
     <Folder Include="Code\Repo\" />
     <Folder Include="Code\Model\" />
     <Folder Include="Code\Extensions\" />
+    <Folder Include="Code\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Properties\global.json" />
