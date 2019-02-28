@@ -26,12 +26,20 @@ namespace backend.Code.Repo {
                 response = await _service.GetFiveDaysForecastByZip(value);
             }
 
-            if (response != null) {
-                var days = response.Days.Select(WeatherDay.Build).ToList().GroupBy(day => day, new WeatherDayDateEqualityComparer()).ToDictionary(g => g.Key, g => g.ToList());
-                Console.WriteLine(days);
+            var result = new List<WeatherDay>();
+            if (response != null && response.Days != null && response.Days.Count > 0) {
+                var days = response.Days.GroupBy(day => day, new DayDateEqualityComparer())
+                                        .Select(group => {
+                                            var avgtemp = group.Select(day => day.Main.Temp).Average();
+                                            var avgHum = group.Select(day => day.Main.Humidity).Average();
+
+                                            return WeatherDay.Build(group.Key, avgtemp, avgHum); ; 
+                                        }).ToList();
+
+                result = days;
             }
 
-            throw new NotImplementedException();
+            return result;
         }
     }
 }

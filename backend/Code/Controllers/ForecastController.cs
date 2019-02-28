@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using backend.Code.Model;
 using backend.Code.Repo;
@@ -22,7 +23,7 @@ namespace backend.Code.Controllers {
         [QueryStringConstraint(Constants.ZIP_CODE_PARAM, false)]
         public async Task<IActionResult> ForecastByCity(string city) {
             var result = await WeatherRepository.FindEntitiesAsync(Constants.CITY_PARAM, city);
-            return Ok(new ForecastResponse());
+            return Ok(result.Select(ForecastItemResponse.Build).ToList());
         }
 
         [HttpGet()]
@@ -30,7 +31,7 @@ namespace backend.Code.Controllers {
         [QueryStringConstraint(Constants.CITY_PARAM, false)]
         public async Task<IActionResult> ForecastByZip([FromQuery(Name = Constants.ZIP_CODE_PARAM)] string zip) {
             var result = await WeatherRepository.FindEntitiesAsync(Constants.ZIP_CODE_PARAM, zip);
-            return Ok(new ForecastResponse());
+            return Ok(result.Select(ForecastItemResponse.Build).ToList());
         }
     }
 }

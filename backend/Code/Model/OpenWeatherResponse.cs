@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using backend.Code.Extensions;
 
 namespace backend.Code.Model.OpenWeatherResponse {
 
@@ -125,6 +126,18 @@ namespace backend.Code.Model.OpenWeatherResponse {
 
         [JsonProperty("snow")]
         public Snow Snow { get; set; }
+    }
+
+    public class DayDateEqualityComparer : IEqualityComparer<Day> {
+        public bool Equals(Day x, Day y) {
+            var xDate = x.Dt.UnixTimeStampToDateTime().ToShortDateString();
+            var yDate = y.Dt.UnixTimeStampToDateTime().ToShortDateString();
+            return xDate.Equals(yDate);
+        }
+
+        public int GetHashCode(Day obj) {
+            return obj.Dt.UnixTimeStampToDateTime().ToShortDateString().GetHashCode();
+        }
     }
 
     public class Coord {
