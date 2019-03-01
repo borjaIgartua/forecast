@@ -6,12 +6,14 @@ using backend.Code.Model.OpenWeatherResponse;
 
 namespace backend.Code.Services {
     public class OpenWeatherService {
-        private const string BASE_URL = "https://samples.openweathermap.org";
+        private const string BASE_URL = "https://api.openweathermap.org";
 
         private const string FORECAST_PATH = "/data/2.5/forecast";
         private const string FORECAST_CITY_PARAM = "q";
         private const string FORECAST_ZIP_PARAM = "zip";
         private const string FORECAST_APPID_PARAM = "appid";
+        private const string FORECAST_UNIT_PARAM = "units";
+        private const string FORECAST_UNIT_VALUE = "metric";
 
         public HttpClient Client { get; }
         public string AppID { get; set; }
@@ -46,6 +48,7 @@ namespace backend.Code.Services {
 
             return path.AddParam(FORECAST_CITY_PARAM, city)
                         .AddParam(FORECAST_ZIP_PARAM, zipCode)
+                        .AddParam(FORECAST_UNIT_PARAM, FORECAST_UNIT_VALUE)
                         .AddParam(FORECAST_APPID_PARAM, appIdentifier);
         }
     }
