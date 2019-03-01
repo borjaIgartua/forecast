@@ -12,13 +12,13 @@ namespace backend.Code.Utils {
         private bool Present { get; set; }
 
         public QueryStringConstraintAttribute(string name, bool present) {
-            this.Name = name;
-            this.Present = present;
+            Name = name;
+            Present = present;
         }
 
         public override bool IsValidForRequest(RouteContext routeContext, ActionDescriptor action) {
-            var value = routeContext.HttpContext.Request.Query[this.Name];
-            if (this.Present) {
+            var value = routeContext.HttpContext.Request.Query[Name];
+            if (Present) {
                 return !String.IsNullOrEmpty(value);
             }
 
