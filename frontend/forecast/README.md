@@ -27,3 +27,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+##Custom plugins?
+https://github.com/pinguinjkeke/vue-local-storage

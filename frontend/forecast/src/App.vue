@@ -10,10 +10,10 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat to="/">
-        <span class="mr-2">Home</span>
+        <span class="mr-2">Forecast</span>
       </v-btn>
       <v-btn flat to="/about">
-        <span class="mr-2">About</span>
+        <span class="mr-2">History</span>
       </v-btn>
     </v-toolbar>
     <v-content>
