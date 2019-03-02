@@ -17,15 +17,15 @@
                                 <v-layout row wrap align-content-start>
                                 <div class="pr-5">
                                     <div class="headline font-weight-light">Temperature</div>
-                                    <span class="subheading font-weight-thin">{{wday.temperature}}</span>
+                                    <span class="subheading font-weight-thin">{{temperature}}&deg;</span>
                                 </div>
                                 <div class="pr-5">
                                     <div class="headline font-weight-light">Humidity</div>
-                                    <span class="subheading font-weight-thin">{{wday.humidity}}</span>
+                                    <span class="subheading font-weight-thin">{{humidity}}%</span>
                                 </div>
                                 <div class="pr-5">
                                     <div class="headline font-weight-light">Wind</div>
-                                    <span class="subheading font-weight-thin">{{wday.wind_speed}}</span>
+                                    <span class="subheading font-weight-thin">{{speed}}&#32;km/h</span>
                                 </div>
                                 </v-layout>
                             </v-flex>
@@ -40,7 +40,18 @@
 
 <script>
 export default {
-    props: ['wday']
+    props: ['wday'],
+    computed: {
+        speed() {
+            return parseFloat(Math.round(this.wday.wind_speed * 100) / 100).toFixed(2);
+        },
+        temperature() {
+            return parseFloat(Math.round(this.wday.temperature * 100) / 100).toFixed(2);
+        },
+        humidity() {
+            return parseFloat(Math.round(this.wday.humidity * 100) / 100).toFixed(2);
+        }
+    }
 }
 </script>
 
