@@ -1,5 +1,5 @@
 <template>
-  <div>   
+  <v-container>   
     <v-alert v-if="error"
                 :value="true"
                 :key="error"
@@ -16,9 +16,9 @@
       </v-layout>
     </v-container> 
     <transition-group name="fade" tag="ul" class="Results">
-      <weatherday v-for="weatherDay in days" :key="weatherDay.day"/>
+      <weatherday v-for="weatherDay in days" :key="weatherDay.day" :wday="weatherDay"/>
     </transition-group>
-  </div>
+  </v-container>
 </template>
 
 <script>
