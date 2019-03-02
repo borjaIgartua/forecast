@@ -1,7 +1,13 @@
 <template>
-    <v-form v-model="valid" ref="form" lazy-validation>        
+    <v-form @submit.prevent="onSubmit">        
         <v-container>       
-            <h2 class="font-weight-regular">Type your search</h2>     
+            <h2 class="font-weight-regular">Type your search</h2>
+            <v-alert v-if="errors.length"
+              :value="true"
+              type="error"
+            >
+            Really? don't you see the input error?
+            </v-alert> 
             <v-layout>
                 <v-flex xs12 md4>
                     <v-text-field
@@ -34,7 +40,6 @@
 <script>
   export default {
     data: () => ({
-      valid: false,
       cityName: '',
       zipCode: '',
       cityNameRules: [
@@ -46,9 +51,19 @@
       errors: []
     }),
     methods: {
-      validate () {
-        if (!this.$refs.form.validate()) {
-            this.errors.push("validate errors");
+      onSubmit () {
+        this.errors = []
+        if (this.cityName.length > 10) {
+          this.errors.push('City name is too long');
+        }
+
+        if (this.zipCode.length > 5) {
+          this.errors.push('Postal code is too long');
+        }
+
+        if (this.errors.length == 0) {
+          if (cityName.length > 0) this.$emit('search:city', cityName); return;
+          if (zipCode.length > 0) this.$emit('search:zip', zipCode);
         }
       }
     },

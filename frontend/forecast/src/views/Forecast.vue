@@ -1,5 +1,5 @@
 <template>
-  <weatherinput />
+  <weatherinput/>
 </template>
 
 <script>
