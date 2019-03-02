@@ -12,7 +12,7 @@
       <v-btn flat to="/">
         <span class="mr-2">Forecast</span>
       </v-btn>
-      <v-btn flat to="/about">
+      <v-btn flat to="/history">
         <span class="mr-2">History</span>
       </v-btn>
     </v-toolbar>
