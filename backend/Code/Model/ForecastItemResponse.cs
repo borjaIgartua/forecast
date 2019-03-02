@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using backend.Code.Extensions;
 
 namespace backend.Code.Model {
     public class ForecastItemResponse {    
@@ -13,10 +13,14 @@ namespace backend.Code.Model {
         [JsonProperty("wind_speed")]
         public double WindSpeed { get; set; }
 
-        public ForecastItemResponse(double tmp, double hmd, double wind) {
+        [JsonProperty("day")]
+        public string Day { get; set; }
+
+        public ForecastItemResponse(double tmp, double hmd, double wind, string day) {
             Temperature = tmp;
             Humidity = hmd;
             WindSpeed = wind;
+            Day = day;
         }
 
 
@@ -24,7 +28,8 @@ namespace backend.Code.Model {
             var tmp = day.AverageTemperature;
             var hmd = day.AverageHumidity;
             var wind = day.WindSpeed;
-            return new ForecastItemResponse(tmp, hmd, wind);
+            var date = day.TimeStamp.UnixTimeStampToDateTime().ToString("dddd");
+            return new ForecastItemResponse(tmp, hmd, wind, date);
         }
     }
 }

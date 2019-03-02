@@ -41,18 +41,11 @@ namespace backend
                 app.UseHsts();
             }
 
-            //// --------- Vue historic mode configuration --------
-            //app.Use(async (context, next) => {
-            //    await next();
-
-            //    var path = context.Request.Path.Value;
-
-            //    if (context.Response.StatusCode == (int)HttpStatusCode.NotFound && !Path.HasExtension(path) && !path.StartsWith("/api", System.StringComparison.Ordinal)) {
-            //        context.Request.Path = "/Home";
-            //        context.Response.StatusCode = (int)HttpStatusCode.OK;
-            //        await next();
-            //    }
-            //});
+            //// --------- CORS (just for development --------
+            app.UseCors(builder => {
+                builder.WithOrigins("http://localhost:8080",
+                                    "http://192.168.2.107:8080/");
+            });
             //// --------
 
             app.UseHttpsRedirection();
