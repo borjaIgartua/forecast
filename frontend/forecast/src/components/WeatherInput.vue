@@ -62,8 +62,12 @@
         }
 
         if (this.errors.length == 0) {
-          if (cityName.length > 0) this.$emit('search:city', cityName); return;
-          if (zipCode.length > 0) this.$emit('search:zip', zipCode);
+          if (cityName.length > 0) { 
+            this.$emit('search:city', this.cityName); 
+             
+          } else if (zipCode.length > 0) {
+            this.$emit('search:zip', this.zipCode);
+          }
         }
       }
     },
