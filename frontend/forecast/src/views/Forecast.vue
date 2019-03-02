@@ -37,11 +37,17 @@ export default {
     weatherday
   },
   methods: {
-    searchCity(event) {
+     searchCity(event) {      
+      this.search('city', event);
+    },
+    searchZip(event) {      
+      this.search('zipCode', event);
+    },
+    search(param, value) {
+      var query = 'https://localhost:5001/api/weather/forecast?' + param + '=' + value;
       this.error = null;
       this.loading = true;
       this.days = []
-      var query = 'https://localhost:5001/api/weather/forecast?city=' + event;
       axios
         .get(query)
         .then(response => {
@@ -52,16 +58,11 @@ export default {
               this.error = "Sorry, but we can't find any match for given term :("
             }
         })
-        .catch(error => {
+        .catch(() => {
           this.error = "We're sorry, we're not able to retrieve this information at the moment, please try back later";
         })
         .finally(() => this.loading = false) //development -> setTimeout(() => this.loading = false, 500)
-    },
-    searchZip(event) {
-      console.log('search by zip: ')
-      this.searched = true;
-      console.log(event)
-    }
+    } 
   }
 }
 </script>
