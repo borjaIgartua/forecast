@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import Search from '../assets/Search.js';
 import weatherday from '../components/WeatherDay.vue';
 
 export default {
