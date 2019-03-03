@@ -43,8 +43,10 @@ export default {
     props: ['wday'],
     computed: {
         day() {
-            var date = new Date(this.wday.timestamp*1000);
-            return date.toLocaleString(window.navigator.language, {weekday: 'long'});
+            var date = new Date(this.wday.timestamp*1000).toLocaleString(window.navigator.language, {weekday: 'long'});
+            var first = date.substring(0,1).toUpperCase();
+            var name = date.substring(1);
+            return first+name;
         },
         speed() {
             return parseFloat(Math.round(this.wday.wind_speed * 100) / 100).toFixed(2);

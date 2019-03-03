@@ -45,7 +45,7 @@ export default {
     }),
     computed: {
         date() {
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
             return new Date(this.hsearch.date).toLocaleDateString(navigator.language, options);
         }    
     },

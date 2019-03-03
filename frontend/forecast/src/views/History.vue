@@ -15,7 +15,7 @@ export default {
   }),
   mounted() {
     if (localStorage.history) {
-      this.searches = JSON.parse(localStorage.history);
+      this.searches = JSON.parse(localStorage.history).reverse();
     }
   },
   components: {
