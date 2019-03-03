@@ -10,7 +10,7 @@
                 <v-card-title>
                     <v-container class="pt-0">
                         <v-container fluid class="pl-0 pt-0">
-                            <div class="display-1 font-weight-bold">{{wday.day}}</div>
+                            <div class="display-1 font-weight-bold">{{day}}</div>
                         </v-container>
                         <v-layout column>
                             <v-flex>
@@ -42,6 +42,10 @@
 export default {
     props: ['wday'],
     computed: {
+        day() {
+            var date = new Date(this.wday.timestamp*1000);
+            return date.toLocaleString(window.navigator.language, {weekday: 'long'});
+        },
         speed() {
             return parseFloat(Math.round(this.wday.wind_speed * 100) / 100).toFixed(2);
         },

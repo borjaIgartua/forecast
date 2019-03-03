@@ -13,14 +13,18 @@ namespace backend.Code.Model {
         [JsonProperty("wind_speed")]
         public double WindSpeed { get; set; }
 
-        [JsonProperty("day")]
-        public string Day { get; set; }
+        [JsonProperty("timestamp")]
+        public double TimeStamp { get; set; }
 
-        public ForecastItemResponse(double tmp, double hmd, double wind, string day) {
+        [JsonProperty("city")]
+        public string City { get; set; }
+
+        public ForecastItemResponse(double tmp, double hmd, double wind, double date, string city) {
             Temperature = tmp;
             Humidity = hmd;
             WindSpeed = wind;
-            Day = day;
+            TimeStamp = date;
+            City = city;
         }
 
 
@@ -28,8 +32,9 @@ namespace backend.Code.Model {
             var tmp = day.AverageTemperature;
             var hmd = day.AverageHumidity;
             var wind = day.WindSpeed;
-            var date = day.TimeStamp.UnixTimeStampToDateTime().ToString("dddd");
-            return new ForecastItemResponse(tmp, hmd, wind, date);
+            var date = day.TimeStamp;
+            var city = day.City;
+            return new ForecastItemResponse(tmp, hmd, wind, date, city);
         }
     }
 }

@@ -16,7 +16,7 @@
       </v-layout>
     </v-container> 
     <transition-group name="fade" tag="ul" class="Results">
-      <weatherday v-for="weatherDay in days" :key="weatherDay.day" :wday="weatherDay"/>
+      <weatherday v-for="weatherDay in days" :key="weatherDay.timestamp" :wday="weatherDay"/>
     </transition-group>
   </v-container>
 </template>
@@ -24,6 +24,7 @@
 <script>
 import weatherinput from '../components/WeatherInput.vue';
 import weatherday from '../components/WeatherDay.vue';
+import Search from '../assets/Search.js';
 const axios = require('axios');
 
 export default {
@@ -52,7 +53,9 @@ export default {
         .get(query)
         .then(response => {
             if (response.data.length > 0) {
-              this.days = response.data;
+              this.days = response.data;              
+              var search = new Search(new Date(), this.days);
+              search.persist();              
 
             } else {
               this.error = "Sorry, but we can't find any match for given term :("

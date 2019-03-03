@@ -31,7 +31,7 @@ namespace backend.Code.Repo {
                                             var avgtemp = group.Select(day => day.Main.Temp).Average();
                                             var avgHum = group.Select(day => day.Main.Humidity).Average();
 
-                                            return WeatherDay.Build(group.Key, avgtemp, avgHum); ; 
+                                            return WeatherDay.Build(group.Key, avgtemp, avgHum, response.City.Name); ; 
                                         }).ToList();
 
                 result = days;
